@@ -1,4 +1,4 @@
-package model;
+package models;
 
 import java.util.UUID;
 
@@ -28,8 +28,8 @@ public class ProductModel {
 	}
 	
 	public void setPrice(float price) throws IllegalArgumentException {
-		if (price < 0 ) {
-			throw new IllegalArgumentException("The price must be either zero or higher.");
+		if (price <= 0 ) {
+			throw new IllegalArgumentException("The price must be more than zero.");
 		}
 		this.price = price;
 	}
@@ -39,14 +39,14 @@ public class ProductModel {
 	}
 	
 	public void setQuantity(int quantity) throws IllegalArgumentException {
-		if (quantity < 0 ) {
-			throw new IllegalArgumentException("The quantity must be either zero or higher.");
+		if (quantity <= 0 ) {
+			throw new IllegalArgumentException("The quantity must be more than zero.");
 		}
 		this.quantity = quantity;
 	}
 	
 	public void displayProduct() {
-		System.out.println("\t\t--- Product ---");
+		System.out.println("\n\t\t--- 📦 Product 📦 ---");
 		System.out.println("\tCode: " + code);
 		System.out.println("\tName: " + name);
 		System.out.println("\tPrice: " + price);
