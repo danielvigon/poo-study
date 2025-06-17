@@ -31,6 +31,7 @@ public class ProductModel {
 		if (price <= 0 ) {
 			throw new IllegalArgumentException("The price must be more than zero.");
 		}
+		
 		this.price = price;
 	}
 	
@@ -42,6 +43,7 @@ public class ProductModel {
 		if (quantity <= 0 ) {
 			throw new IllegalArgumentException("The quantity must be more than zero.");
 		}
+		
 		this.quantity = quantity;
 	}
 	
