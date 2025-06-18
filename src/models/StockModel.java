@@ -5,7 +5,7 @@ import java.util.UUID;
 import java.util.NoSuchElementException;
 
 public class StockModel {
-	public ArrayList<ProductModel> stock = new ArrayList<>();
+	private ArrayList<ProductModel> stock = new ArrayList<>();
 
 	public void addProduct(String name, float price, int quantity) {
 		try {
@@ -22,6 +22,7 @@ public class StockModel {
 				return product;
 			}
 		}
+		
 		return null;
 	}
 
@@ -40,6 +41,7 @@ public class StockModel {
 				System.out.println("An error occurred: " + exception.getMessage());
 			}
 		}
+		
 		stock.set(stock.indexOf(product), product);
 	}
 
