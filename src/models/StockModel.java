@@ -7,62 +7,42 @@ import java.util.NoSuchElementException;
 public class StockModel {
 	private ArrayList<ProductModel> stock = new ArrayList<>();
 
-	public void addProduct(String name, float price, int quantity) {
-		try {
-			ProductModel product = new ProductModel(name, price, quantity);
-			stock.add(product);
-		} catch (IllegalArgumentException exception) {
-			System.out.println("An error occurred: " + exception.getMessage());
-		}
+	public void addProduct(ProductModel product) {
+		stock.add(product);
 	}
 
 	public ProductModel searchProduct(UUID code) {
 		for (ProductModel product : stock) {
-			if (product.getCode() == code) {
+			if (product.getCode().equals(code)) {
 				return product;
 			}
 		}
-		
-		return null;
+
+		throw new NoSuchElementException("It wasn't possible to find any product with the code " + code + "for this operation.");
 	}
 
-	public void updateProduct(UUID code, int quantity, boolean isInbound) throws NoSuchElementException {
+	public void updateProduct(UUID code, int quantity, boolean isInbound) {
 		var product = searchProduct(code);
-		if (product == null) {
-			throw new NoSuchElementException("It wasn't possible to find any product with the code " + code + " to be updated.");
-		}
 
 		if (isInbound) {
 			product.setQuantity(product.getQuantity() + quantity);
 		} else {
-			try {
-				product.setQuantity(product.getQuantity() - quantity);		// bug-prone code
-			} catch (IllegalArgumentException exception) {
-				System.out.println("An error occurred: " + exception.getMessage());
-			}
+			product.setQuantity(product.getQuantity() - quantity); // bug-prone code
 		}
-		
+
 		stock.set(stock.indexOf(product), product);
 	}
 
-	public void removeProduct(UUID code) throws NoSuchElementException {
+	public void removeProduct(UUID code) {
 		var product = searchProduct(code);
-		if (product == null) {
-			throw new NoSuchElementException("It wasn't possible to find any product with the code " + code + " to be removed.");
-		}
-
 		stock.remove(product);
 	}
 
 	public void displayStock() {
-		stock.forEach(product -> product.displayProduct());
-	}
-
-	public boolean isStockFilled() throws NoSuchElementException {
 		if (stock.isEmpty()) {
-			throw new NoSuchElementException("The stock is empty.");
+			throw new NoSuchElementException("The inventory has " + stock.size() + " stocked product.");
 		}
 
-		return true;
+		stock.forEach(product -> product.displayProduct());
 	}
 }

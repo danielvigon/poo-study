@@ -6,8 +6,7 @@ import java.io.InputStreamReader;
 
 public class Keyboard {
 
-	private static BufferedReader keyboard = new BufferedReader(
-			new InputStreamReader(System.in));
+	private static BufferedReader keyboard = new BufferedReader(new InputStreamReader(System.in));
 
 	public static String readStringDataType(String input) {
 		try {
@@ -24,5 +23,9 @@ public class Keyboard {
 
 	public static double readDoubleDataType(String input) {
 		return Double.parseDouble(readStringDataType(input));
+	}
+
+	public static boolean readBooleanDataType(String input) {
+		return Boolean.parseBoolean(readStringDataType(input));
 	}
 }

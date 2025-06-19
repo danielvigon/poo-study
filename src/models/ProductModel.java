@@ -1,14 +1,16 @@
 package models;
 
 import java.util.UUID;
+import exceptions.EntityValidationException;
+
 
 public class ProductModel {
 	private UUID code;
 	private String name;
-	private float price;
+	private double price;
 	private int quantity;
 	
-	public ProductModel(String name, float price, int quantity) {
+	public ProductModel(String name, double price, int quantity) {
 		code = UUID.randomUUID();
 		this.name = name;
 		setPrice(price);
@@ -23,13 +25,13 @@ public class ProductModel {
 		return name;
 	}
 	
-	public float getPrice() {
+	public double getPrice() {
 		return price;
 	}
 	
-	public void setPrice(float price) throws IllegalArgumentException {
+	public void setPrice(double price) {
 		if (price <= 0 ) {
-			throw new IllegalArgumentException("The price must be more than zero.");
+			throw new EntityValidationException("The price must be more than zero.");
 		}
 		
 		this.price = price;
@@ -39,9 +41,9 @@ public class ProductModel {
 		return quantity;
 	}
 	
-	public void setQuantity(int quantity) throws IllegalArgumentException {
+	public void setQuantity(int quantity) {
 		if (quantity <= 0 ) {
-			throw new IllegalArgumentException("The quantity must be more than zero.");
+			throw new EntityValidationException("The quantity must be more than zero.");
 		}
 		
 		this.quantity = quantity;
