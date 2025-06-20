@@ -4,12 +4,12 @@ import java.util.NoSuchElementException;
 import java.util.UUID;
 import views.MainView;
 import views.StockView;
-import models.ProductModel;
-import models.StockModel;
+import models.Product;
+import models.Stock;
 import exceptions.EntityValidationException;
 
 public class MainController {
-	private static StockModel stock = new StockModel();
+	private static Stock stock = new Stock();
 	private static int input = -1;
 
 	public static void main(String[] args) {
@@ -58,7 +58,7 @@ public class MainController {
 		try {
 			double price = StockView.getProductPriceInput();
 			int quantity = StockView.getProductQuantityInput();
-			ProductModel product = new ProductModel(name, price, quantity);
+			Product product = new Product(name, price, quantity);
 			stock.addProduct(product);
 		} catch (NumberFormatException exception) {
 			System.out.println("\nAn error occurred: It wasn't possible to identify either a valid price or quantity.");

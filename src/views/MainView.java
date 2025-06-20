@@ -1,20 +1,19 @@
 package views;
 
-import java.util.Map;
+import java.util.LinkedHashMap;
 import util.Keyboard;
 
 public class MainView {
 	public static void displayMenu() {
-		Map<Integer, String> menu = Map.of(
-				1, "Add product",
-				2, "List products",
-				3, "Update stock",
-				4, "Remove product",
-				5, "Search product",
-				0, "Quit");
+		LinkedHashMap<Integer, String> menu = new LinkedHashMap<>();
+		menu.put(1, "Add product");
+		menu.put(2, "List products");
+		menu.put(3, "Update stock");
+		menu.put(4, "Remove product");
+		menu.put(5, "Search product");
+		menu.put(0, "Quit");
 
 		System.out.println("\n\tMenu");
-		
 		menu.forEach((key, value) -> System.out.println(key + " - " + value));
 	}
 	

@@ -4,15 +4,15 @@ import java.util.ArrayList;
 import java.util.UUID;
 import java.util.NoSuchElementException;
 
-public class StockModel {
-	private ArrayList<ProductModel> stock = new ArrayList<>();
+public class Stock {
+	private ArrayList<Product> stock = new ArrayList<>();
 
-	public void addProduct(ProductModel product) {
+	public void addProduct(Product product) {
 		stock.add(product);
 	}
 
-	public ProductModel searchProduct(UUID code) {
-		for (ProductModel product : stock) {
+	public Product searchProduct(UUID code) {
+		for (Product product : stock) {
 			if (product.getCode().equals(code)) {
 				return product;
 			}
